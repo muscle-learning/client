@@ -13,7 +13,7 @@ const Home = () => {
     const formData = new FormData();
     console.log("upload:", uploadFile);
     formData.append("uploadFile", uploadFile);
-    const res = await fetch('http://localhost:3000/api/upload', {
+    const res = await fetch('http://ec2-52-198-83-134.ap-northeast-1.compute.amazonaws.com:3000/api/upload', {
       method: "POST",
       body: formData,
     });
