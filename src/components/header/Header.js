@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import mediaQuery from "styled-media-query";
+
 
 const Header = () => {
   return <Container>
@@ -7,10 +9,14 @@ const Header = () => {
   </Container>
 };
 
+const mediaMobile = mediaQuery.lessThan("medium");
+
+
 const Container = styled.div`
     background-color: #0A0A0A;
     width: 100vw;
     height: 16vh;
+    ${mediaMobile`height: 32vh;`}
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,6 +27,7 @@ const Title = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 8rem;
+  ${mediaMobile`font-size: 6rem;`}
   line-height: 15vh;
   text-align: center;
   

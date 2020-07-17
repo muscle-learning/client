@@ -4,6 +4,8 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import Dropzone from 'react-dropzone'
 import {TwitterIcon, TwitterShareButton} from "react-share";
+import mediaQuery from "styled-media-query";
+
 
 const Home = () => {
   const [uploadFile, setUploadFile] = useState(void 0);
@@ -11,7 +13,6 @@ const Home = () => {
   const [response, setResponse] = useState(void 0);
   const sendForm = async (uploadFile) => {
     const formData = new FormData();
-    console.log("upload:", uploadFile);
     formData.append("uploadFile", uploadFile);
     const res = await fetch('https://api.muscle-learning.com/api/upload', {
       method: "POST",
@@ -19,12 +20,17 @@ const Home = () => {
     });
     setResponse(await res.json())
   };
+  const refresh= () =>{
+    setUploadFile(void 0);
+    setPreview(void 0);
+    setResponse(void  0);
+  };
 
   return <div>
     <Header/>
-
     {response ?
       <MuscleBackground>
+        <BackIcon className="fa fa-arrow-left" onClick={refresh}/>
         <ResultContainer>
           <ResultDiv>
             <MuscleRateHeader>Muscle Rate</MuscleRateHeader>
@@ -32,7 +38,8 @@ const Home = () => {
           </ResultDiv>
           <TwitterShareButton url="https://muscle-learning.com"
                               title={`${parseInt(parseFloat(response.result.broken) * 100)}%\n`}>
-            <TwitterShare className="ui button"><TwitterIcon size="2rem" round/><TwitterShareText>share in Twitter</TwitterShareText></TwitterShare>
+            <TwitterShare className="ui button"><TwitterIcon size="2rem" round/>
+            <TwitterShareText>share in Twitter</TwitterShareText></TwitterShare>
           </TwitterShareButton>
         </ResultContainer>
       </MuscleBackground> :
@@ -47,7 +54,7 @@ const Home = () => {
               <ImageSubmitForm  {...getRootProps()} onClick={() => sendForm(uploadFile)}>
                 <input {...getInputProps()} id="uploadFile"/>
                 <SelectedImage src={preview} alt="upload file"/>
-                <SubmitButton className="ui purple button"> submit </SubmitButton>
+                <SubmitButton className="ui purple button">submit</SubmitButton>
               </ImageSubmitForm>
               :
               <section>
@@ -64,25 +71,32 @@ const Home = () => {
   </div>
 };
 
+const mediaMobile = mediaQuery.lessThan("medium");
+
 const Container = styled.div`
   min-height: 74vh;
+  ${mediaMobile`min-height: 58vh;`}
   display: flex;
   justify-content: center;
 `;
 
 const DropArea = styled.div`
   margin: 10vh 0 0 0;
-  height: 30vh;
+  height: 50vh;
+  ${mediaMobile`height: 30vh;`}
   width: 60vw;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #DBDBDB;
+  cursor: pointer;
+  border-radius: 30px;
 `;
 
 const SelectImage = styled.p`
   color: #636363;
   font-size: 3rem;
+  text-align: center
 `;
 
 const SelectedImage = styled.img`
@@ -116,9 +130,11 @@ const ResultContainer = styled.div`
 `;
 
 const ResultDiv = styled.div`
-  margin: 10vh 0 5vh 0;
+  margin: 3vh 0 5vh 0;
   width: 40vw;
+  ${mediaMobile`width: 80vw;`}
   height: 50vh;
+  ${mediaMobile`height: 40vh;`}
   background: white;
   display: flex;
   flex-direction: column;
@@ -150,5 +166,11 @@ const TwitterShare = styled.button`
 const TwitterShareText = styled.p`
   color: white;
   font-size: 2rem;
+`;
+
+const BackIcon = styled.i`
+  font-size: 3rem;
+  margin: 1vh 3vw;
+  cursor: pointer;
 `;
 export default Home;
