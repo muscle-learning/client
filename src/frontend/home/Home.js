@@ -6,7 +6,6 @@ import Dropzone from 'react-dropzone'
 import {TwitterIcon, TwitterShareButton} from "react-share";
 import mediaQuery from "styled-media-query";
 
-
 const Home = () => {
   const [uploadFile, setUploadFile] = useState(void 0);
   const [preview, setPreview] = useState(void 0);
@@ -25,7 +24,9 @@ const Home = () => {
     setPreview(void 0);
     setResponse(void  0);
   };
-
+  const muscleRate = response && response.result && parseInt(parseFloat(response.result.broken) * 100);
+  const twitterComment = window.navigator.language.startsWith("ja") ? `私の腹筋力は${muscleRate}%です。\n` : `I'll give you the number of my power level. It's ${muscleRate}%`;
+  const twitterHashTag = "#MuscleLearning";
   return <div>
     <Header/>
     {response ?
@@ -34,10 +35,10 @@ const Home = () => {
         <ResultContainer>
           <ResultDiv>
             <MuscleRateHeader>Muscle Rate</MuscleRateHeader>
-            <MuscleRateContent>{parseInt(parseFloat(response.result.broken) * 100)}%</MuscleRateContent>
+            <MuscleRateContent>{muscleRate}%</MuscleRateContent>
           </ResultDiv>
           <TwitterShareButton url="https://muscle-learning.com"
-                              title={`${parseInt(parseFloat(response.result.broken) * 100)}%\n`}>
+                              title={twitterComment + twitterHashTag + "\n"}>
             <TwitterShare className="ui button"><TwitterIcon size="2rem" round/>
             <TwitterShareText>share in Twitter</TwitterShareText></TwitterShare>
           </TwitterShareButton>
