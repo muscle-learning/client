@@ -1,11 +1,19 @@
-import React from "react";
-import {BrowserRouter, Route} from "react-router-dom";
+import React, {useEffect} from "react";
+import {BrowserRouter, Route, useLocation} from "react-router-dom";
 import {createGlobalStyle} from "styled-components";
 
 import "semantic-ui-css/semantic.min.css"
 import "@fortawesome/fontawesome-free/css/all.css";
 import Home from "./home/Home";
 import ErrorBoundary from "../components/organisms/error/ErrorBoundary";
+import ReactGA from "react-ga";
+import Diagnosis from "./app/Diagnosis";
+
+
+ReactGA.initialize("UA-57296092-10");
+const path = window.location.pathname + window.location.search;
+ReactGA.set({page: path});
+ReactGA.pageview(path);
 
 const GlobalStyles = createGlobalStyle`
     body {
@@ -50,6 +58,16 @@ const GlobalStyles = createGlobalStyle`
     }
 `;
 
+const LocationListener = ({children}) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.set({page: location.pathname});
+    ReactGA.pageview(location.pathname);
+  }, [location]);
+
+  return children;
+};
 
 const App = () => {
   return (
@@ -57,7 +75,10 @@ const App = () => {
       <React.Fragment>
         <GlobalStyles/>
         <BrowserRouter>
-          <Route exact path="/" component={Home}/>
+          <LocationListener>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/app" component={Diagnosis}/>
+          </LocationListener>
         </BrowserRouter>
       </React.Fragment>
     </ErrorBoundary>
