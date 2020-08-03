@@ -1,5 +1,7 @@
 export default {
   home: {
+    description: "Description",
+    descriptionParagraph:"Muscle Learning is the judgment tool for your abs is broken or not. It's easy to use just paste your abs image.",
     howToUse: "How to use",
     takePhoto: "Take photo",
     selectPhoto: "select photo",

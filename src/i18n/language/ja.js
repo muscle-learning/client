@@ -1,5 +1,7 @@
 export default {
   home: {
+    description: "説明",
+    descriptionParagraph:"Muscle Learningでは機械学習によってあなたの腹筋が割れているかどうかを判断します。腹筋の画像を貼り付けるだけで簡単にご利用いただけます。",
     howToUse: "使い方",
     takePhoto: "写真を撮る",
     selectPhoto: "写真を選ぶ",

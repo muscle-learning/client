@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import Dropzone from 'react-dropzone'
 import {TwitterIcon, TwitterShareButton} from "react-share";
 import mediaQuery from "styled-media-query";
@@ -29,7 +27,6 @@ const Diagnosis = () => {
   const twitterComment = window.navigator.language.startsWith("ja") ? `私の腹筋力は${muscleRate}%です。\n` : `I'll give you the number of my power level. It's ${muscleRate}%`;
   const twitterHashTag = "#MuscleLearning";
   return <div>
-    <Header/>
     {response ?
       <MuscleBackground>
         <BackIcon className="fa fa-arrow-left" onClick={refresh}/>
@@ -69,14 +66,13 @@ const Diagnosis = () => {
         </Dropzone>
       </Container>
     }
-    <Footer/>
   </div>
 };
 
 const mediaMobile = mediaQuery.lessThan("medium");
 
 const Container = styled.div`
-  min-height: 74vh;
+  min-height: 50vh;
   ${mediaMobile`min-height: 58vh;`}
   display: flex;
   justify-content: center;

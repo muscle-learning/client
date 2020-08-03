@@ -8,17 +8,25 @@ import mediaQuery from "styled-media-query";
 import GoogleAdsense from "../../components/organisms/googleAdsense/GoogleAdsense";
 import {Link} from "react-router-dom";
 import {FormattedMessage} from "react-intl";
+import Diagnosis from "../app/Diagnosis";
 
 const Home = () => {
   return <div>
     <Header/>
     <Container>
-      <StartDiagnosis>
-        <Link to="/app">
-          <StartButton/>
-        </Link>
-      </StartDiagnosis>
+      {/*<StartDiagnosis>*/}
+      {/*  <Link to="/app">*/}
+      {/*    <StartButton/>*/}
+      {/*  </Link>*/}
+      {/*</StartDiagnosis>*/}
+      <Diagnosis/>
       <Description>
+        <DescriptionHeader>
+          <FormattedMessage id="home.description"/>
+        </DescriptionHeader>
+        <HowToUseParagraph>
+          <FormattedMessage id="home.descriptionParagraph"/>
+        </HowToUseParagraph>
         <DescriptionHeader>
           <FormattedMessage id="home.howToUse"/>
         </DescriptionHeader>
@@ -80,7 +88,7 @@ const Description = styled.div`
 `;
 
 const DescriptionHeader = styled.h2`
-  
+
 `;
 
 const HowToUseHeader = styled.h3`
