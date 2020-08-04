@@ -2,11 +2,7 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import Dropzone from 'react-dropzone'
-import {TwitterIcon, TwitterShareButton} from "react-share";
 import mediaQuery from "styled-media-query";
-import GoogleAdsense from "../../components/organisms/googleAdsense/GoogleAdsense";
-import {Link} from "react-router-dom";
 import {FormattedMessage} from "react-intl";
 import Diagnosis from "../app/Diagnosis";
 

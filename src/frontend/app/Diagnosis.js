@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Dropzone from 'react-dropzone'
 import {TwitterIcon, TwitterShareButton} from "react-share";
 import mediaQuery from "styled-media-query";
-import GoogleAdsense from "../../components/organisms/googleAdsense/GoogleAdsense";
 
 const Diagnosis = () => {
   const [uploadFile, setUploadFile] = useState(void 0);

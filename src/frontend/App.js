@@ -8,6 +8,7 @@ import Home from "./home/Home";
 import ErrorBoundary from "../components/organisms/error/ErrorBoundary";
 import ReactGA from "react-ga";
 import Diagnosis from "./app/Diagnosis";
+import List from "./list/List";
 
 
 ReactGA.initialize("UA-57296092-10");
@@ -78,6 +79,7 @@ const App = () => {
           <LocationListener>
             <Route exact path="/" component={Home}/>
             <Route exact path="/app" component={Diagnosis}/>
+            <Route exact path="/list" component={List}/>
           </LocationListener>
         </BrowserRouter>
       </React.Fragment>

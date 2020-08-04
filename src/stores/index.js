@@ -20,7 +20,6 @@ const initialState = {
     messages: locale === "ja" ? messages.ja : messages.en
   }
 };
-console.log(initialState);
 const persistConfig = {
   key: `muscle-learning`,
   blacklist: "intl.messages",
