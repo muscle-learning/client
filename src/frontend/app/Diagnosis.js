@@ -35,7 +35,7 @@ const Diagnosis = () => {
             <MuscleRateHeader>Muscle Rate</MuscleRateHeader>
             <MuscleRateContent>{muscleRate}%</MuscleRateContent>
           </ResultDiv>
-          <TwitterShareButton url="https://muscle-learning.com"
+          <TwitterShareButton url="https://www.muscle-learning.com"
                               title={twitterComment + twitterHashTag + "\n"}>
             <TwitterShare className="ui button"><TwitterIcon size="2rem" round/>
               <TwitterShareText>share in Twitter</TwitterShareText></TwitterShare>
