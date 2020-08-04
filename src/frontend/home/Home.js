@@ -36,6 +36,8 @@ const Home = () => {
         <HowToUseParagraph>
           <FormattedMessage id="home.takePhotoDescription1"/><br/>
           <FormattedMessage id="home.takePhotoDescription2"/>
+          <SampleAbs src="images/sample/sample-abs.jpg" className="ui image"></SampleAbs>
+          <FormattedMessage id="home.sampleAbsDescription"/>
         </HowToUseParagraph>
         <HowToUseHeader>
           2.<FormattedMessage id="home.selectPhoto"/>
@@ -85,6 +87,11 @@ const StartButton = styled.div`
 
 const Description = styled.div`
   margin: 5vh;
+`;
+
+const SampleAbs = styled.img`
+    width: 25vw;
+  ${mediaMobile`width: 80vw`}
 `;
 
 const DescriptionHeader = styled.h2`

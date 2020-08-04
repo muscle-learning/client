@@ -24,7 +24,7 @@ const Diagnosis = () => {
     setResponse(void  0);
   };
   const muscleRate = response && response.result && parseInt(parseFloat(response.result.broken) * 100);
-  const twitterComment = window.navigator.language.startsWith("ja") ? `私の腹筋力は${muscleRate}%です。\n` : `I'll give you the number of my power level. It's ${muscleRate}%`;
+  const twitterComment = window.navigator.language.startsWith("ja") ? `私の腹筋割れてる度は${muscleRate}%です。\n` : `I'll give you the number of my power level. It's ${muscleRate}%`;
   const twitterHashTag = "#MuscleLearning";
   return <div>
     {response ?
