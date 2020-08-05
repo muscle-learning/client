@@ -8,7 +8,7 @@ const Diagnosis = () => {
   const [uploadFile, setUploadFile] = useState(void 0);
   const [preview, setPreview] = useState(void 0);
   const [response, setResponse] = useState(void 0);
-  !response && setResponse({result: {broken: 1}});
+  // !response && setResponse({result: {broken: 1}});
   const sendForm = async (uploadFile) => {
     const formData = new FormData();
     formData.append("uploadFile", uploadFile);
