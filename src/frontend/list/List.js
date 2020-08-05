@@ -17,18 +17,22 @@ const bucketParams = {
   Bucket: 'muscle-uploads',
 };
 
-
 const List = () => {
   const [imageURLs, setImageURLs] = useState(void 0);
-  s3.listObjectsV2(bucketParams, function (err, data) {
-    if (err) {
-      console.error("Error", err);
-    } else {
-      console.log("Success", data);
-      setImageURLs(data.Contents.map(item => {
-        const signedURL = s3.getSignedUrl('getObject', {...bucketParams, Key: item.Key})
-        return signedURL;
-      }))
+  useEffect(() => {
+    if (!imageURLs) {
+      s3.listObjectsV2(bucketParams, function (err, data) {
+        if (err) {
+          console.error("Error", err);
+        } else {
+          console.log("Success", data);
+          console.log(data.Contents);
+          setImageURLs(data.Contents.sort((a, b) => a.LastModified < b.LastModified ? 1 : -1).map(item => {
+            const signedURL = s3.getSignedUrl('getObject', {...bucketParams, Key: item.Key});
+            return signedURL;
+          }))
+        }
+      });
     }
   });
   return <div>
@@ -51,7 +55,7 @@ const Container = styled.div`
   ${mediaMobile`min-height: 58vh;`}
 `;
 const Image = styled.img`
-  max-width: 30vw;
+  width: 33vw;
   max-height: 30vh;
 `;
 
