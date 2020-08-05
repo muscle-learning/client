@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import Dropzone from 'react-dropzone'
-import {TwitterIcon, TwitterShareButton} from "react-share";
+import {TwitterIcon, TwitterShareButton, FacebookIcon, FacebookShareButton} from "react-share";
 import mediaQuery from "styled-media-query";
 
 const Diagnosis = () => {
   const [uploadFile, setUploadFile] = useState(void 0);
   const [preview, setPreview] = useState(void 0);
   const [response, setResponse] = useState(void 0);
+  !response && setResponse({result: {broken: 1}});
   const sendForm = async (uploadFile) => {
     const formData = new FormData();
     formData.append("uploadFile", uploadFile);
@@ -17,14 +18,14 @@ const Diagnosis = () => {
     });
     setResponse(await res.json())
   };
-  const refresh= () =>{
+  const refresh = () => {
     setUploadFile(void 0);
     setPreview(void 0);
-    setResponse(void  0);
+    setResponse(void 0);
   };
   const muscleRate = response && response.result && parseInt(parseFloat(response.result.broken) * 100);
   const twitterComment = window.navigator.language.startsWith("ja") ? `私の腹筋割れてる度は${muscleRate}%です。\n` : `I'll give you the number of my power level. It's ${muscleRate}%`;
-  const twitterHashTag = "#MuscleLearning";
+  const twitterHashTag = "MuscleLearning";
   return <div>
     {response ?
       <MuscleBackground>
@@ -34,11 +35,39 @@ const Diagnosis = () => {
             <MuscleRateHeader>Muscle Rate</MuscleRateHeader>
             <MuscleRateContent>{muscleRate}%</MuscleRateContent>
           </ResultDiv>
-          <TwitterShareButton url="https://www.muscle-learning.com"
-                              title={twitterComment + twitterHashTag + "\n"}>
-            <TwitterShare className="ui button"><TwitterIcon size="2rem" round/>
-              <TwitterShareText>share in Twitter</TwitterShareText></TwitterShare>
-          </TwitterShareButton>
+          <ShareButtons>
+            <FacebookShareButton url="https://www.muscle-learning.com"
+                                 quote={twitterComment + "\n"}
+                                 hashtag={twitterHashTag}
+                                 style={{
+                                   marginRight: "2vw",
+                                   background: "#3B5998",
+                                   display: "flex",
+                                   alignItems: "center",
+                                   justifyContent: "center",
+                                   borderRadius: "30px",
+                                   padding: "0 2vw 0 2vw"
+                                 }}>
+              <FacebookIcon size="4rem" round/>
+              <FacebookShareText>Share in Facebook</FacebookShareText>
+            </FacebookShareButton>
+            <TwitterShareButton url="https://www.muscle-learning.com"
+                                title={twitterComment}
+                                hashtags={[twitterHashTag]}
+                                style={{
+                                  marginRight: "2vw",
+                                  background: "#10ACF1",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  borderRadius: "30px",
+                                  minHeight: "8vh",
+                                  padding: "0 2vw 0 2vw"
+                                }}
+            ><TwitterIcon size="3rem" round/>
+              <TwitterShareText>Share in Twitter</TwitterShareText>
+            </TwitterShareButton>
+          </ShareButtons>
         </ResultContainer>
       </MuscleBackground> :
       <Container>
@@ -75,6 +104,10 @@ const Container = styled.div`
   ${mediaMobile`min-height: 58vh;`}
   display: flex;
   justify-content: center;
+`;
+
+const ShareButtons = styled.div`
+  display: flex;
 `;
 
 const DropArea = styled.div`
@@ -160,7 +193,20 @@ const TwitterShare = styled.button`
   justify-content: center;
   border-radius: 30px;
 `;
+
+const FacebookShare = styled.button`
+  background: #3B5998 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+`;
 const TwitterShareText = styled.p`
+  color: white;
+  font-size: 2rem;
+`;
+
+const FacebookShareText = styled.p`
   color: white;
   font-size: 2rem;
 `;
