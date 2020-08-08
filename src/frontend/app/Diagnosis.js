@@ -46,10 +46,10 @@ const Diagnosis = () => {
                                    alignItems: "center",
                                    justifyContent: "center",
                                    borderRadius: "30px",
-                                   padding: "0 2vw 0 2vw"
+                                   padding: "0 4vw 0 2vw"
                                  }}>
               <FacebookIcon size="4rem" round/>
-              <FacebookShareText>Share in Facebook</FacebookShareText>
+              <FacebookShareText>Share</FacebookShareText>
             </FacebookShareButton>
             <TwitterShareButton url="https://www.muscle-learning.com"
                                 title={twitterComment}
@@ -62,10 +62,10 @@ const Diagnosis = () => {
                                   justifyContent: "center",
                                   borderRadius: "30px",
                                   minHeight: "8vh",
-                                  padding: "0 2vw 0 2vw"
+                                  padding: "0 4vw 0 2vw"
                                 }}
             ><TwitterIcon size="3rem" round/>
-              <TwitterShareText>Share in Twitter</TwitterShareText>
+              <TwitterShareText>Tweet</TwitterShareText>
             </TwitterShareButton>
           </ShareButtons>
         </ResultContainer>
